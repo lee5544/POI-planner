@@ -8,4 +8,7 @@ A motion planning method base on POIs.
   <a href="figs/Process.mp4">Download the video</a>
 </video>
 
+<video src="figs/Process.mp4" controls="controls" style="max-width: 730px;">
+</video>
+
 <img src="figs/System architecture of the proposed method.png" alt="pipeline" width="600" />
