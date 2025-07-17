@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="sfc_manager" name="MissionXYZ_node" type="MissionXYZ_node" output="screen">
+        <remap from="/odom" to="/Odometry"/>
+        <param name="mission/wps_threshold" value="2.0" />
+        <param name="mission/control_mode" value="3" />
+        <param name="mission/handle_wpts_xy" value="UseOffboardPoint" />
+        <param name="mission/handle_wpts_z" value="UseOffboardHeight" />
+        <param name="mission/sfc_mission_log_filename" value="$(find sfc_manager)/sfc_mission.csv" />
+        <param name="mission/no_replan_thresh" value='2.0'/>
+        <param name="mission/replan_thresh" value='2.0'/>
+
+        <param name="mission/waypoint_num" value="1" />
+
+        <param name="mission/waypoint0_x" value="35.0" />
+        <param name="mission/waypoint0_y" value="0.0" />
+        <param name="mission/waypoint0_z" value="0.0" />
+        <param name="mission/waypoint0_vm" value="2.0" />
+        <param name="mission/waypoint0_am" value="1.0" />
+
+        <param name="mission/waypoint1_x" value="20.0" />
+        <param name="mission/waypoint1_y" value="20.0" />
+        <param name="mission/waypoint1_z" value="2.0" />
+        <param name="mission/waypoint1_vm" value="2.0" />
+        <param name="mission/waypoint1_am" value="2.0" />
+
+        <param name="mission/waypoint2_x" value="0.0" />
+        <param name="mission/waypoint2_y" value="20.0" />
+        <param name="mission/waypoint2_z" value="2.0" />
+        <param name="mission/waypoint2_vm" value="2.0" />
+        <param name="mission/waypoint2_am" value="2.0" />
+
+        <param name="mission/waypoint3_x" value="0.0" />
+        <param name="mission/waypoint3_y" value="0.0" />
+        <param name="mission/waypoint3_z" value="2.0" />
+        <param name="mission/waypoint3_vm" value="2.0" />
+        <param name="mission/waypoint3_am" value="2.0" />
+    </node>
+
+    <node pkg="sfc_manager" name="SFCPlannerLidar_node" type="SFCPlannerLidar_node" output="screen">
+        <remap from="/odom" to="/Odometry"/>
+        <remap from="/points" to="/uav1/cloud_mid360_body"/>
+
+        <param name="paramfile/path" value="$(find sfc_manager)/config/lidar.yaml" type="string"/>
+
+        <param name="planner/control_point_distance" value='0.4'/>
+        <!-- 地图的边界 -->
+        <param name="planner/planning_horizon" value='12.0'/>
+        <param name="planner/collsion_check_dist" value='0.5'/>
+    </node>
+<!-- 
+    <node pkg="sfc_manager" name="ep2fcu_node" type="ep2fcu_node" output="screen">
+        <remap from="/odom" to="/Odometry"/>
+    </node> -->
+
+    <!-- <node pkg="sfc_env" name="global_gridmap_node" type="global_gridmap_node" output="screen" /> -->
+    <node pkg="sfc_env" name="global_gridmap_node" type="global_gridmap_node" output="screen">
+        <remap from="/odom" to="/Odometry" />
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find sfc_manager)/launch/sfc.rviz" required="true" />
+
+    <node pkg="sfc_manager" name="pathVis_node" type="pathVis_node" output="screen">
+        <remap from="/odom" to="/Odometry" />
+        <!-- <remap from="/target" to="/mavros/setpoint_raw/local" /> -->
+    </node>
+
+</launch>

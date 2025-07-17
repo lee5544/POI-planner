@@ -1,0 +1,25 @@
+<launch>
+	<!-- vim: set ft=xml noet : -->
+	<!-- example launch script for PX4 based FCU's -->
+	<arg name="fcu_url" value="/dev/ttyACM0:921600" />
+	<!-- <arg name="fcu_url" default="udp://:14540@localhost:14557"/> -->
+	<arg name="gcs_url" value="" />
+	<arg name="tgt_system" value="1" />
+	<arg name="tgt_component" value="1" />
+	<arg name="log_output" value="screen" />
+	<arg name="fcu_protocol" value="v2.0" />
+	<arg name="respawn_mavros" default="false" />
+
+	<node pkg="mavros" type="mavros_node" name="mavros" required="$(eval not respawn_mavros)" clear_params="true" output="$(arg log_output)" respawn="$(arg respawn_mavros)">
+		<param name="fcu_url" value="$(arg fcu_url)" />
+		<param name="gcs_url" value="$(arg gcs_url)" />
+		<param name="target_system_id" value="$(arg tgt_system)" />
+		<param name="target_component_id" value="$(arg tgt_component)" />
+		<param name="fcu_protocol" value="$(arg fcu_protocol)" />
+
+		<!-- load blacklist, config -->
+		<rosparam command="load" file="$(find sfc_manager)/config/mavros_config/px4_pluginlists.yaml" />
+		<rosparam command="load" file="$(find sfc_manager)/config/mavros_config/px4_config.yaml" />
+	</node>
+
+</launch>

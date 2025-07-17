@@ -1,0 +1,80 @@
+%YAML:1.2
+---
+PlanMap:
+  resolution: 0.4
+  sogm_size_x: 20
+  sogm_size_y: 20
+  sogm_size_z: 10
+  p_hit: 0.80
+  p_miss: 0.35
+  p_min: 0.12
+  p_max: 0.97
+  p_occ: 0.80
+
+  useSquareDist: 0 # 0 = false, 1=true
+  esdf_max_xy: 4.0 # (m)
+  esdf_max_z: 4.0 # (m)
+
+Depth:
+  heigth: 480 # /realsense_plugin/camera/depth/image_raw
+  width: 640
+  fx: 554.3826904296875
+  fy: 554.3826904296875
+  cx: 320.0
+  cy: 240.0
+
+  # heigth: 640 # /camera/depth/image_rect_raw
+  # width: 480
+  # fx: 392.365234375
+  # fy: 392.365234375
+  # cx: 320.01055908203125
+  # cy: 241.12890625
+
+  k_depth_scaling_factor: 1000
+  depth_maxdist: 10.0
+  depth_mindist: 0.5
+  depth_filter_margin: 10
+  skip_pixel: 4
+
+  R_C_2_B: !!opencv-matrix #normal realsense
+    rows: 3
+    cols: 3
+    dt: d
+    data: [0, 0, 1, -1, 0, 0, 0, -1, 0]
+
+  T_C_2_B: !!opencv-matrix  # !! explicity specify the type
+    rows: 1
+    cols: 3
+    dt: d
+    data: [0.0, 0.0, 0.0]
+
+HybirdAstar:
+  resolution: 0.1
+  time_resolution: 0.8
+  max_tau: 0.6
+  init_max_tau: 0.8 # 最大持续时间
+  max_vel: 3.0 # 会被目标点覆盖
+  max_acc: 2.0
+  min_dist: 2.0
+  w_time: 1 # 越小越不重视时间成本
+  # w_time: 10 # 越小越不重视时间成本
+  lambda_heu: 5.0
+  allocate_num: 1000000
+  check_num: 5
+  vel_margin: 0.0
+  no_search_dist: 1.0
+  cost_axis_weight_x: 1.0
+  cost_axis_weight_y: 1.0
+  cost_axis_weight_z: 1.0
+
+SFCOpt:
+  max_vel: 3.0 # 会被目标点覆盖
+  max_acc: 2.0
+  min_dist: 2.5
+  lambda_smoothness: 1000.0
+  lambda_feasibility: 0.001
+  lambda_distance: 5.0
+  max_iteration_num: 500
+  max_iteration_time: 0.05
+  logpath: "/home/ly/sfc_opt.csv"
+

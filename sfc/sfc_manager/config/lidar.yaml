@@ -1,0 +1,63 @@
+%YAML:1.2
+---
+PlanMap:
+  resolution: 0.1
+  sogm_size_x: 13
+  sogm_size_y: 13
+  sogm_size_z: 5
+  p_hit: 0.80
+  p_miss: 0.35
+  p_min: 0.12
+  p_max: 0.97
+  p_occ: 0.80
+
+  useSquareDist: 0 # 0 = false, 1=true
+  esdf_max_xy: 0.5 # (m)
+  esdf_max_z: 0.5 # (m)
+
+Depth:
+  depth_maxdist: 10.0
+  depth_mindist: 0.5
+
+  R_C_2_B: !!opencv-matrix #normal realsense
+    rows: 3
+    cols: 3
+    dt: d
+    data: [1, 0, 0, 0, 1, 0, 0, 0, 1]
+    # data: [0, 0, 1, -1, 0, 0, 0, -1, 0]
+    # data: [0, 0, 1, 1, 0, 0, 0, 1, 0]
+    
+  T_C_2_B: !!opencv-matrix  # !! explicity specify the type
+    rows: 1
+    cols: 3
+    dt: d
+    data: [0.0, 0.0, 0.0]
+
+HybirdAstar:
+  resolution: 0.1
+  time_resolution: 0.8
+  max_tau: 0.6
+  init_max_tau: 0.8 # 最大持续时间
+  max_vel: 2.0 # 会被目标点覆盖
+  max_acc: 1.0
+  min_dist: 0.5
+  # w_time: 1 # 越小越不重视时间成本
+  w_time: 10 # 越小越不重视时间成本
+  lambda_heu: 5.0
+  allocate_num: 1000000
+  check_num: 5
+  vel_margin: 0.0
+
+SFCOpt:
+  max_vel: 2.0 # 会被目标点覆盖
+  max_acc: 1.0
+  min_dist: 2.0
+  lambda_smoothness: 10.0
+  lambda_feasibility: 0.01
+  # lambda_feasibility: 0.01
+  # # lambda_feasibility: 0.25
+  lambda_distance: 2.0
+  max_iteration_num: 500
+  max_iteration_time: 0.05
+  logpath: "/home/ly/sfc_opt.csv"
+

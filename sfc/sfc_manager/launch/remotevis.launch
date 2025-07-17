@@ -1,0 +1,7 @@
+<launch>
+
+    <node pkg="sfc_env" name="global_gridmap_node" type="global_gridmap_node" output="screen" />
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find sfc_manager)/launch/sfc.rviz" required="true" />
+
+</launch>

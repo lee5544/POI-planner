@@ -1,0 +1,57 @@
+%YAML:1.2
+---
+PlanMap:
+  # resolution: 0.1 
+  sogm_size_x: 80.1
+  sogm_size_y: 80.1
+  sogm_size_z: 5.1
+  resolution: 0.1
+  # sogm_size_x: 10.0
+  # sogm_size_y: 5.0
+  # sogm_size_z: 3.1
+  p_hit: 0.80
+  p_miss: 0.35
+  p_min: 0.12
+  p_max: 0.97
+  p_occ: 0.80
+
+  useSquareDist: 0 # 0 = false, 1=true
+  esdf_max_xy: 0.5 # m
+  esdf_max_z: 0.5
+
+HybirdAstar:
+  max_tau: 0.6
+  init_max_tau: 0.8
+  max_vel: 2.5
+  max_acc: 2.0
+  min_dist: 0.25
+  w_time: 10.0
+  resolution: 0.10
+  time_resolution: 0.8
+  lambda_heu: 5.0
+  allocate_num: 1000000
+  check_num: 50
+  vel_margin: 0
+
+SFCOpt:
+  max_vel: 3.0
+  max_acc: 2.0
+  min_dist: 1.0
+  lambda_smoothness: 50.0
+  lambda_feasibility: 0.01
+  # lambda_feasibility: 0.01
+  # # lambda_feasibility: 0.25
+  lambda_distance: 2.0
+
+  # lambda_smoothness: 0.0
+  # lambda_feasibility: 0.0
+  # # lambda_feasibility: 0.25
+  # lambda_distance: 2.0
+
+  # lambda_smoothness: 1.0
+  # lambda_feasibility: 0.1
+  # lambda_distance: 0.5
+  interval: 0.1
+  max_iteration_num: 200
+  max_iteration_time: 5
+  logpath: "/home/ly/sfc_opt.csv"
