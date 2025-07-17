@@ -7,3 +7,5 @@ A motion planning method base on POIs.
   Your browser does not support the <code>video</code> tag.  
   <a href="figs/process.mp4">Download the video</a>
 </video>
+
+<img src="figs/demo.png" alt="pipeline" width="600" />
