@@ -1,10 +1,14 @@
 # POI-planner
-A motion planning method base on POIs.
+A More Flexible And Safer Sequential Motion Planning Leveraging Heuristic Maps. 
+We proposed a new POIs model which builds a mechanism for information exchange that leverages the locality of motion planning to tightly couple planning and mapping.
 
-<video controls width="730" style="max-width:100%;">
-  <source src="figs/Process.mp4" type="video/mp4" />
-  您的浏览器不支持 <code>video</code> 标签。请 
-  <a href="figs/Process.mp4">点击此处下载视频</a>。
-</video>
 
-<img src="figs/System architecture of the proposed method.png" alt="pipeline" width="600" />
+<table>
+  <tr>
+    <td><img src="figs/System architecture of the proposed method.png" alt="Pipeline" width="600" /></td>
+    <td><img src="figs/Process.gif" alt="Workflow Demo" width="600" /></td>
+  </tr>
+</table>
+<p align="center"><strong>Figure 1. System Architecture (left) and Workflow Demo (right)</strong></p>
+
+We will release details soon...
